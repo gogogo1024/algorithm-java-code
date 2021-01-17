@@ -38,7 +38,7 @@ public class MaxPointsOneLine {
       return 0;
     }
 
-    // 当只有一个点和两个点的情况
+    /* 当只有一个点和两个点的情况 */
     if (points.length <= 2) {
       return points.length;
     }
