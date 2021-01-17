@@ -1,3 +1,8 @@
+//给定一个正数数组arr，返回该数组能不能分成4个部分，并且每个部分的累加 和相等，切分位置的数不要。
+//  例如:
+//  arr=[3, 2, 4, 1, 4, 9, 5, 10, 1, 2, 2] 返回true
+//  三个切割点下标为2, 5, 7. 四个子数组为[3,2], [1,4], [5], [1,2,2]
+
 import java.util.HashMap;
 
 /**
@@ -37,7 +42,6 @@ public class SplitParts {
   }
 
   public static void main(String[] args) {
-    int testTime = 3000000;
     int[] arr = new int[]{3, 3, 9, 2, 4, 7, 6, 8, 1, 5};
     System.out.println(canSplit(arr));
   }
