@@ -2,6 +2,8 @@
  * @author huangcheng
  */
 
+import java.util.Arrays;
+
 /**
  * 给定一个正数数组 arr，其中所有的值都为整数，以下是最小不可组成和的概念:
  * 把 arr 每个子集内的所有元素加起来会出现很多值，其中最小的记为 min，最大的记为max 在区间[min,max]上，
@@ -62,26 +64,31 @@ public class SmallestUnFormedSum {
     return sum + 1;
   }
 
-  public static int advancedUnformedSum(int[] arr, int range) {
-    int current = arr[0];
+  public static int advancedUnformedSum(int[] arr) {
+    if (arr == null || arr.length == 0) {
+      return 0;
+    }
+    Arrays.sort(arr);
     int N = arr.length;
+    int range = 1;
+    // 对于最小数是1的情况是加1处理，对于最小数是N的情况是加N处理，
     for (int i = 1; i < N; i++) {
-      if (current > range + 2) {
-        return range + 2;
+      if (arr[i] > range + 1) {
+        return range + 1;
       } else {
-        range += current;
+        range += arr[i];
       }
     }
-    return current + 2;
+    return range + 1;
   }
 
 
   public static void main(String[] args) {
     int[] arr = {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
     System.out.println(unformedSum(arr));
-    int[] arr2 = {2, 3, 7, 8};
-    int range = 15;
-    System.out.println(advancedUnformedSum(arr2, range));
+    int[] arr2 = {1, 2, 3, 7};
+
+    System.out.println(advancedUnformedSum(arr2));
   }
 
 }
