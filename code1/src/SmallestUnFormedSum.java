@@ -13,6 +13,12 @@
  * 在区间[2,10] 上，4、 6 和 9 不能被任何子集相加得到，其中 4 是 arr的最小不可组成和。 arr=[1,2,4]。
  * 子集{1}相加产生 1 为 min，子集{1,2,4}相加产生 7 为 max。在区间[1,7]上， 任何数都可以被子集相加得到，
  * 所以 8 是arr的最小不可组成和。
+ * 【进阶】
+ * 如果已知正数数组 arr 中肯定有 1 这个数，是否能更快地得到最小不可组成和?
+ * 【举例】
+ * arr = {1,2,3,7}，range = 15
+ * 想累加得到 1~15 范围上所有的数，arr 还缺 14 这个数，所以返回1 arr = {1,5,7}，range = 15
+ * 想累加得到 1~15 范围上所有的数，arr 还缺 2 和 4，所以返回2
  *
  * @author huangcheng
  */
@@ -30,7 +36,9 @@ public class SmallestUnFormedSum {
     // dp[i][j]含义是 ar[0],ar[1]...ar[i]能不能组合出来j
     // 分两种情况 1.不使用i位置的数字也就是看dp[i-1][j]
     // 2. 使用i位置的数字也就是看dp[i-1][j-ar[i]]
+    // 因此最后一行就是ar[0],ar[1]... ar[i]能够组合出来的所有范围是 min到max
     boolean[][] dp = new boolean[N][sum + 1];
+    // 第一行只有 arr[0]位置是true
     dp[0][arr[0]] = true;
     for (int i = 1; i < N; i++) {
       for (int j = 1; j <= sum; j++) {
@@ -54,8 +62,26 @@ public class SmallestUnFormedSum {
     return sum + 1;
   }
 
+  public static int advancedUnformedSum(int[] arr, int range) {
+    int current = arr[0];
+    int N = arr.length;
+    for (int i = 1; i < N; i++) {
+      if (current > range + 2) {
+        return range + 2;
+      } else {
+        range += current;
+      }
+    }
+    return current + 2;
+  }
+
+
   public static void main(String[] args) {
     int[] arr = {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
     System.out.println(unformedSum(arr));
+    int[] arr2 = {2, 3, 7, 8};
+    int range = 15;
+    System.out.println(advancedUnformedSum(arr2, range));
   }
+
 }
