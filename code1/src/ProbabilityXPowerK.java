@@ -16,24 +16,11 @@ public class ProbabilityXPowerK {
     }
     double res = -1;
     for (int i = 0; i != k; i++) {
-      res = Math.max(res, Math.random());
-    }
-    return res;
-  }
-
-  public static double randomXPower(int k) {
-    if (k < 1) {
-      return 0;
-    }
-    double res = 1;
-
-    for (int i = 0; i != k; i++) {
       // Math.random k次符合条件概率是range的k次方,
       res = Math.max(res, Math.random());
     }
     return res;
   }
-
 
   public static void main(String[] args) {
     double range = 0.5;
