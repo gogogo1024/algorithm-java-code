@@ -1,8 +1,17 @@
-import java.util.HashSet;
+/**
+ * 一个矩阵可以由左上角点的坐标和右下角点的坐标代表。给定一些矩阵，请返回这些矩阵
+ * 全拼在一起，能否拼出完美的矩形?
+ * 完美的矩形指，内部没有重叠、没有突出和凹陷、所有矩形正好拼成一块。
+ *
+ * @author huangcheng
+ */
 
 /**
  * @author huangcheng
  */
+
+import java.util.HashSet;
+
 public class PerfectRectangle {
   public boolean isRectangleCover(int[][] rectangles) {
     if (rectangles.length == 0 || rectangles[0].length == 0) {
